@@ -5,7 +5,6 @@ using UnityEngine;
 public class PivotController : MonoBehaviour
 {
     public float sensitivity = 100f;
-    private float xRotation = 0f;
     public Vector2 camClamp = new Vector2(90,90);
     private float mouseX;
     private float mouseY;
@@ -27,8 +26,8 @@ public class PivotController : MonoBehaviour
          mouseX += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
          mouseY -= Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
         
-        xRotation = Mathf.Clamp(mouseY,camClamp.x,camClamp.y);
-        transform.rotation = Quaternion.Euler(xRotation, mouseX, 0);
+        mouseY = Mathf.Clamp(mouseY,camClamp.x,camClamp.y);
+        transform.rotation = Quaternion.Euler(mouseY, mouseX, 0);
 
     }
 }
