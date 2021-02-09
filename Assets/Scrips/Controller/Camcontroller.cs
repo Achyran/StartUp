@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Camcontroller : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Transform pivot;
+    public int dist;
+
+    private void Update()
     {
-        
+        SetThirdPersonPosition();
+    }
+    //Sets the Cam a dist away from the Char and its rotation relativ to the pivot
+    private void SetThirdPersonPosition()
+    {
+        this.transform.position = pivot.transform.position + (pivot.forward * dist);
+        this.transform.LookAt(pivot);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void RotatePivot()
     {
-        
+
     }
 }

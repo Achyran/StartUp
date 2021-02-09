@@ -5,17 +5,17 @@ using System;
 
 public class GameMaster : MonoBehaviour
 {
-    public static GameMaster gm;
+    public static GameMaster current;
     private void Awake()
     {
-        if(gm == null)
+        if(current == null)
         {
-            gm = this;
+            current = this;
         }
         else
         {
             Debug.LogError("GameMaster allready exist, Destroying this !");
-            Destroy(gm);
+            Destroy(current);
         }
     }
 
