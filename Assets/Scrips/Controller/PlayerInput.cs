@@ -26,4 +26,5 @@ public class PlayerInput : MonoBehaviour
         jump = Input.GetKey(KeyCode.Space);
         crouch = Input.GetKey(KeyCode.LeftShift);
     }
+   
 }

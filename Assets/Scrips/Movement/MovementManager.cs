@@ -7,13 +7,14 @@ public class MovementManager : MonoBehaviour
     public Rigidbody rb;
     public Transform pivot;
     public Transform body;
+    public LayerMask isGround;
 
     public IMovement movement;
 
     private void Start()
     {
         movement = new GoundMovementTest();
-        movement.InitMovement(rb,body,pivot);
+        movement.InitMovement(rb,body,pivot,isGround);
     }
 
     private void Update()
