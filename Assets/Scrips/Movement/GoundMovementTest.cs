@@ -5,7 +5,8 @@ using UnityEngine;
 public class GoundMovementTest : IMovement 
 {
     private Rigidbody _rb;
-    private float _speed = 500;
+    private float _speed = 1000;
+    private float _maxSpeed = 10;
     private Transform _body;
     private Transform _pivot;
     private float _counter = 0.175f;
@@ -26,24 +27,28 @@ public class GoundMovementTest : IMovement
         //Limits Directional Movement
         Vector3 direction = new Vector3(pDir.x, 0,pDir.y);
         direction = direction.normalized;
-        //Adds Speed
-        direction *= relativspeed();
-        //Applies Force
+       
 
         projectedforce = _rb.transform.forward * direction.z + _rb.transform.right * direction.x + _rb.velocity;
         Debug.DrawRay(_body.position, projectedforce.normalized * 5, Color.black);
-        Debug.DrawRay(_body.position, (Quaternion.Euler(0,Vector3.Angle(_body.forward,projectedforce),0) * _body.forward).normalized * 5, Color.blue);
+        Debug.DrawRay(_body.position, (Quaternion.Euler(0,-Vector3.SignedAngle(_body.forward,projectedforce,_body.up),0) * _body.forward).normalized * 5, Color.blue);
         Debug.DrawRay(_body.position, _body.forward * 5, Color.red);
         Debug.DrawRay(_body.position, _rb.velocity.normalized * 5, Color.green);
         Debug.DrawRay(_body.position, _rb.velocity.normalized + new Vector3());
-        Debug.Log(Vector3.Angle(_body.forward, _rb.velocity.normalized));
+        Debug.Log(_rb.velocity.magnitude);
 
+        direction *= relativspeed();
         //Countermovement(pDir.x, pDir.y, FindRelativeToLook());
-        if (pDir.magnitude > _threshold)
+        if (pDir.magnitude > _threshold &&  _rb.velocity.magnitude <= _maxSpeed && isGrounded())
         {
             _rb.AddForce(_rb.transform.forward * direction.z);
             _rb.AddForce(_rb.transform.right * direction.x);
+
         }
+
+        //Stops Player if no input is given
+        if(pDir.magnitude <= _threshold)
+        _rb.velocity = _rb.velocity *0.7f;
         
         
     }
