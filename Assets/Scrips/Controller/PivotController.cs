@@ -28,6 +28,5 @@ public class PivotController : MonoBehaviour
         
         mouseY = Mathf.Clamp(mouseY,camClamp.x,camClamp.y);
         transform.rotation = Quaternion.Euler(mouseY, mouseX, 0);
-
     }
 }

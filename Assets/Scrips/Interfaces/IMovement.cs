@@ -4,11 +4,8 @@ using UnityEngine;
 
 public interface IMovement
 {
-    float weight {get; set;}
-    float jumpStrenght { get; set; }
-    float speed { get; set; }
-
+    void InitMovement(Rigidbody prb, Transform pBody, Transform pPivot);
+    void Rotate();
+    void Move(Vector2 pdir);
     void Jump();
-    void Crouch();
-    void Move();
 }

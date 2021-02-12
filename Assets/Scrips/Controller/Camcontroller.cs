@@ -8,8 +8,9 @@ public class Camcontroller : MonoBehaviour
     public float dist;
     private float _dist;
     public float minDist;
+    public float camSpeed;
 
-    private void Update()
+    private void FixedUpdate()
     {
         SetThirdPersonPosition();
         DistCheck();
@@ -18,7 +19,7 @@ public class Camcontroller : MonoBehaviour
     //Sets the Cam a dist away from the Char and its rotation relativ to the pivot
     private void SetThirdPersonPosition()
     {
-        this.transform.position = pivot.transform.position + (pivot.forward * -_dist);
+        this.transform.position = pivot.position + (pivot.forward * -_dist);
         this.transform.LookAt(pivot);
     }
     //Checks for objects beween char and cam and adusts local dist relativly
@@ -28,10 +29,9 @@ public class Camcontroller : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(pivot.position, -pivot.forward, out hit, dist))
         {
-            Debug.Log(hit.GetType());
             if(hit.distance < dist && _dist > minDist)
             {
-                _dist = hit.distance;
+                _dist = hit.distance -0.1f;
             }
         }
     }
