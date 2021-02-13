@@ -11,6 +11,9 @@ public class GoundMovementTest : IMovement
     private Transform _pivot;
     private float _counter = 0.175f;
     private float _threshold = 0.01f;
+    private float _forwardStop = 0.7f;
+    private float _jumpStrenght = 200;
+    private bool _canJump;
     LayerMask whatIsGround;
 
     public void InitMovement(Rigidbody pRb,Transform pBody, Transform pPivot,LayerMask pGround)
@@ -27,18 +30,16 @@ public class GoundMovementTest : IMovement
         //Limits Directional Movement
         Vector3 direction = new Vector3(pDir.x, 0,pDir.y);
         direction = direction.normalized;
-       
 
+        ControlleCanJump();
         projectedforce = _rb.transform.forward * direction.z + _rb.transform.right * direction.x + _rb.velocity;
         Debug.DrawRay(_body.position, projectedforce.normalized * 5, Color.black);
         Debug.DrawRay(_body.position, (Quaternion.Euler(0,-Vector3.SignedAngle(_body.forward,projectedforce,_body.up),0) * _body.forward).normalized * 5, Color.blue);
         Debug.DrawRay(_body.position, _body.forward * 5, Color.red);
         Debug.DrawRay(_body.position, _rb.velocity.normalized * 5, Color.green);
         Debug.DrawRay(_body.position, _rb.velocity.normalized + new Vector3());
-        Debug.Log(_rb.velocity.magnitude);
-
         direction *= relativspeed();
-        //Countermovement(pDir.x, pDir.y, FindRelativeToLook());
+        // Adds the moving force
         if (pDir.magnitude > _threshold &&  _rb.velocity.magnitude <= _maxSpeed && isGrounded())
         {
             _rb.AddForce(_rb.transform.forward * direction.z);
@@ -47,8 +48,11 @@ public class GoundMovementTest : IMovement
         }
 
         //Stops Player if no input is given
-        if(pDir.magnitude <= _threshold)
-        _rb.velocity = _rb.velocity *0.7f;
+        if (pDir.magnitude <= _threshold && isGrounded())
+        {
+            _rb.angularVelocity = Vector3.zero;
+            _rb.velocity = _rb.velocity * _forwardStop;
+        }
         
         
     }
@@ -60,21 +64,43 @@ public class GoundMovementTest : IMovement
         }
     }
 
-    public void Jump() { }
+    public void Jump() 
+    {
+        if (isGrounded() && _canJump)
+        {
+            _rb.AddForce(0, _jumpStrenght, 0);
+            _canJump = false;
+            _canReset = 0;
+        }
+    }
 
     private float relativspeed()
     {
         return _speed * Time.deltaTime;
     }
+
+    int _canReset;
+    void ControlleCanJump()
+    {
+        if(_canReset >= 10 && !_canJump && isGrounded())
+            {
+                _canJump = true;
+            }
+        else if(_canReset < 10)
+        {
+            _canReset++;
+        }
+    }
     //--------------------------Gorund Check-----------------------//
     private bool isGrounded()
     {
         Debug.DrawRay(_body.transform.position, _body.transform.up * -0.6f, Color.white);
-        if(Physics.Raycast(_body.transform.position, _body.transform.up * -2, whatIsGround))
+        if(Physics.Raycast(_body.transform.position, -_body.transform.up, 0.6f,whatIsGround))
         {
+
             return true;
         }
-
+        
         return false;
     }
 

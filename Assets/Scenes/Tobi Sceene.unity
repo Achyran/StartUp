@@ -130,6 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 252993568}
+  - component: {fileID: 252993569}
   m_Layer: 0
   m_Name: Thrid person Player
   m_TagString: Untagged
@@ -152,6 +153,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &252993569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252993567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9730071774771974bbe853158deb1e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1818230035}
+  pivot: {fileID: 1835991215}
+  body: {fileID: 1200185828}
+  isGround:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &652636489
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +183,7 @@ GameObject:
   - component: {fileID: 652636492}
   - component: {fileID: 652636491}
   - component: {fileID: 652636490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,6 +534,7 @@ MonoBehaviour:
   pivot: {fileID: 1835991215}
   dist: 5
   minDist: 1.2
+  camSpeed: 0.5
 --- !u!1 &1200185824
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +613,7 @@ Transform:
   m_Children:
   - {fileID: 728405015}
   m_Father: {fileID: 1818230034}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1346961155
 GameObject:
@@ -607,7 +627,7 @@ GameObject:
   - component: {fileID: 1346961158}
   - component: {fileID: 1346961157}
   - component: {fileID: 1346961156}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +704,7 @@ Transform:
   m_GameObject: {fileID: 1346961155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.92, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -718,8 +738,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1835991215}
   - {fileID: 1200185828}
+  - {fileID: 1835991215}
   m_Father: {fileID: 252993568}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -733,7 +753,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -777,11 +797,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835991214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.287, z: 0}
+  m_LocalPosition: {x: 0, y: 0.19999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1818230034}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1835991216
 MonoBehaviour:
@@ -795,7 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2127c211227bf084886f701bd091e85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 100
+  sensitivity: 50
   camClamp: {x: -30, y: 70}
 --- !u!1 &2050940435
 GameObject:
