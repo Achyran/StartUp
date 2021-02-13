@@ -40,14 +40,18 @@ public class GoundMovementTest : IMovement
         Debug.DrawRay(_body.position, _rb.velocity.normalized + new Vector3());
         direction *= relativspeed();
         // Adds the moving force
+       
+        
         if (pDir.magnitude > _threshold &&  _rb.velocity.magnitude <= _maxSpeed && isGrounded())
         {
             _rb.AddForce(_rb.transform.forward * direction.z);
             _rb.AddForce(_rb.transform.right * direction.x);
-
+            
+            _rb.AddForce((Quaternion.Euler(0, -Vector3.SignedAngle(_body.forward, projectedforce, _body.up), 0) * _body.forward).normalized *_rb.velocity.magnitude );
         }
 
         //Stops Player if no input is given
+        
         if (pDir.magnitude <= _threshold && isGrounded())
         {
             _rb.angularVelocity = Vector3.zero;
@@ -105,38 +109,9 @@ public class GoundMovementTest : IMovement
     }
 
     //----------------------Needed for Counter movenemt---------------//
-
     
-
-    private Vector2 FindRelativeToLook()
+    private void CounterMovement()
     {
-        float lookAngel = _body.transform.eulerAngles.y;
-        float moveAngel = Mathf.Atan2(_rb.velocity.x, _rb.velocity.z) * Mathf.Rad2Deg;
-
-        float u = Mathf.DeltaAngle(lookAngel, moveAngel);
-        float v = 90 - u;
-
-        float yMag = _rb.velocity.magnitude * Mathf.Cos(u*Mathf.Deg2Rad);
-        float xMag = _rb.velocity.magnitude * Mathf.Cos(v*Mathf.Deg2Rad);
-
-        return new Vector2(yMag,xMag);
-    }
-
-    private void Countermovement(float x, float y, Vector2 mag)
-    {
-        if (!isGrounded()) return;
-
-     
-        if(Mathf.Abs(mag.x)> _threshold && Mathf.Abs(x) < 0.5f || (mag.x < -_threshold && x >0) ||(mag.x > _threshold && x<0))
-        {
-            _rb.AddForce(relativspeed() * _body.transform.right * -mag.x * _counter);
-        }
-        if (Mathf.Abs(mag.y) > _threshold && Mathf.Abs(y) < 0.5f || (mag.y < -_threshold && y > 0) || (mag.y > _threshold && x < 0)){
-            _rb.AddForce(relativspeed() * _body.transform.right * -mag.y * _counter);
-        }
         
-
     }
-    
-    
 }
