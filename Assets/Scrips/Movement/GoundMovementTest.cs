@@ -5,8 +5,8 @@ using UnityEngine;
 public class GoundMovementTest : IMovement 
 {
     private Rigidbody _rb;
-    private float _speed = 1000;
-    private float _maxSpeed = 10;
+    private float _speed = 2000;
+    private float _maxSpeed = 30;
     private Transform _body;
     private Transform _pivot;
     private float _threshold = 0.01f;
@@ -14,6 +14,7 @@ public class GoundMovementTest : IMovement
     private float _jumpStrenght = 200;
     private int _jumpCd = 10;
     private bool _canJump;
+    private float _drag = 5;
     LayerMask whatIsGround;
 
     //Calculation
@@ -107,10 +108,10 @@ public class GoundMovementTest : IMovement
         Debug.DrawRay(_body.transform.position, _body.transform.up * -0.6f, Color.white);
         if(Physics.Raycast(_body.transform.position, -_body.transform.up, 0.6f,whatIsGround))
         {
-
+            _rb.drag = _drag;
             return true;
         }
-        
+        _rb.drag = 0;
         return false;
     }
 
