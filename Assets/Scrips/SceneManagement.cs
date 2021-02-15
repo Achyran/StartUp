@@ -7,18 +7,19 @@ public class SceneManagement : MonoBehaviour
 {
     public void StartGame()
     {
-        Debug.Log("START GAME");
-        SceneManager.LoadScene("Tobi Sceene");
+        Debug.Log("STARTING GAME");
+        //SceneManager.LoadScene("Tobi Sceene");
     }
 
     public void QuitGame()
     {
-        Debug.Log("QUIT GAME");
+        Debug.Log("QUITTING GAME");
         Application.Quit();
     }
 
-    public void ShowError()
+    public void ShowErrorMessage()
     {
-        Debug.Log("Sorry this function is not available yet");
-    }
+        Debug.Log("This function is not available yet");
+        //TODO: show error message
+    }    
 }
