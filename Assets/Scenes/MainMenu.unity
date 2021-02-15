@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 150137085}
   - component: {fileID: 150137084}
   m_Layer: 5
-  m_Name: Button
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -876,6 +876,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   errorImage: {fileID: 389696205}
   errorButton: {fileID: 2139191971}
+  playButton: {fileID: 150137084}
+  optionsButton: {fileID: 961843404}
+  extrasButton: {fileID: 1102548687}
+  exitButton: {fileID: 1265740332}
+  errorText: {fileID: 305668806}
 --- !u!1 &961843402
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +894,7 @@ GameObject:
   - component: {fileID: 961843405}
   - component: {fileID: 961843404}
   m_Layer: 5
-  m_Name: Button
+  m_Name: OptionsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,7 +1034,7 @@ GameObject:
   - component: {fileID: 1102548688}
   - component: {fileID: 1102548687}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ExtrasButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1169,7 +1174,7 @@ GameObject:
   - component: {fileID: 1265740333}
   - component: {fileID: 1265740332}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
