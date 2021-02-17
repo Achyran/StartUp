@@ -25,7 +25,7 @@ public class GameMaster : MonoBehaviour
 
     public void PlayerChange(Animal animalIndex)
     {
-        if (currentAnimal == animalIndex) { Debug.LogError("Same Animal Returning "); return; }
+        if (currentAnimal == animalIndex)   return; 
         currentAnimal = animalIndex;
         if(event_PlayerChange != null)
         {

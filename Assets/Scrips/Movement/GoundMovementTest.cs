@@ -162,6 +162,10 @@ public class GoundMovementTest : IMovement
         pRb.mass = 1;
         pRb.drag = 10;
         pRb.angularDrag = 1;
+        CapsuleCollider coll = pRb.GetComponent<CapsuleCollider>();
+        coll.height = 3.17f;
+        coll.radius = 0.8f;
+        coll.direction = 2;
     }
 
     //Shows the forces and helpfull info

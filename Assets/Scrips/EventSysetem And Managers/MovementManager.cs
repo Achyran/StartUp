@@ -8,7 +8,7 @@ public class MovementManager : MonoBehaviour
     public Transform pivot;
     public Transform body;
     public LayerMask isGround;
-    private bool CanChange = true;
+    //private bool CanChange = true;
 
     public IMovement movement;
 

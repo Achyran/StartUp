@@ -30,6 +30,7 @@ public class FlyMovement : IMovement
         _pivot = pPivot;
         _whatisGround = pIsGorund;
         _RbInit(prb);
+        
     }
     public void Rotate() 
     {
@@ -80,7 +81,11 @@ public class FlyMovement : IMovement
     {
         pRb.mass = 1;
         pRb.drag = 0.5f;
-        pRb.angularDrag = 1;
+        pRb.angularDrag = 10;
+        CapsuleCollider coll =  pRb.GetComponent<CapsuleCollider>();
+        coll.height = 2.36f;
+        coll.radius = 0.43f;
+        coll.direction = 0;
     }
     public void Jump() 
     {
