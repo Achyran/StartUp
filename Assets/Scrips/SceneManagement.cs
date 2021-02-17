@@ -11,8 +11,6 @@ public class SceneManagement : MonoBehaviour
     {
         Debug.Log("STARTING GAME");
         Invoke("DelayedAction", delayTime);
-        //SceneManager.LoadScene("Tobi Sceene");
-        //SceneManager.LoadScene("AmkesScene");
     }
 
     public void QuitGame()
