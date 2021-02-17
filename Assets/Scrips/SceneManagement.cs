@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
+    public float delayTime = 5f;
+
     public void StartGame()
     {
         Debug.Log("STARTING GAME");
-        SceneManager.LoadScene("Tobi Sceene");
+        Invoke("DelayedAction", delayTime);
+        //SceneManager.LoadScene("Tobi Sceene");
         //SceneManager.LoadScene("AmkesScene");
     }
 
@@ -22,4 +25,9 @@ public class SceneManagement : MonoBehaviour
     {
         Debug.Log("This function is not available yet");
     }    
+
+    public void DelayedAction()
+    {
+        SceneManager.LoadScene("Tobi Sceene");
+    }
 }
