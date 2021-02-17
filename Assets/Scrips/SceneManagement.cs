@@ -9,6 +9,7 @@ public class SceneManagement : MonoBehaviour
     {
         Debug.Log("STARTING GAME");
         //SceneManager.LoadScene("Tobi Sceene");
+        SceneManager.LoadScene("AmkesScene");
     }
 
     public void QuitGame()
