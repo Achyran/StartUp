@@ -8,6 +8,7 @@ public class MovementManager : MonoBehaviour
     public Transform pivot;
     public Transform body;
     public LayerMask isGround;
+    private bool CanChange = true;
 
     public IMovement movement;
 
@@ -22,6 +23,11 @@ public class MovementManager : MonoBehaviour
         movement.Move(PlayerInput.current.direction);
         movement.Rotate();
         
+        if(CanChange && Input.GetKeyDown(KeyCode.H))
+        {
+            movement = new FlyMovement();
+            movement.InitMovement(rb, body, pivot, isGround);
+        }
         
     }
     private void FixedUpdate()
