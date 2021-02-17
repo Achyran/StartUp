@@ -16,8 +16,9 @@ public class FlyMovement : IMovement
     private float _canjump;
     private float _jumpStrength = 500;
     private float _rotationSpeed = 100;
-    private float _speed = 500;
+    private float _speed = 1000;
     private float _maxTilt = 50;
+    private float _groundDist;
 
     //MathShit
     private float _currentRoll;
@@ -41,11 +42,11 @@ public class FlyMovement : IMovement
     {
         if(_currentRoll > 0)
         {
-            _currentRoll--;
+            _currentRoll --;
         }
         if(_currentRoll < 0)
         {
-            _currentRoll++;
+            _currentRoll ++;
         }
         //Roatat the player around the forward axis
         if (Mathf.Abs( pdir.x) >= 0.1f &&  Mathf.Abs(_currentRoll) <= _maxTilt)
@@ -54,12 +55,17 @@ public class FlyMovement : IMovement
         }
        if(Mathf.Abs(pdir.y)>= 0.1f)
         {
-            _rb.AddForce(_rb.transform.forward * pdir.y * Time.deltaTime * _speed);
+            _rb.AddForce(_pivot.forward * pdir.y * Time.deltaTime * _speed);
 
         }
 
         _UpdateJumpCD();
-        _rb.transform.rotation = Quaternion.LookRotation(_pivot.forward);
+        if (_rb.velocity.magnitude > 0.1f)
+        {
+
+            _rb.transform.rotation = Quaternion.LookRotation(new Vector3(_rb.velocity.x, 0, _rb.velocity.z));
+        }else
+            _rb.transform.rotation = Quaternion.LookRotation(new Vector3(_pivot.forward.x, 0, _pivot.forward.z));
         _rb.transform.Rotate(0,0,_currentRoll);
 
     }
@@ -83,5 +89,11 @@ public class FlyMovement : IMovement
             _rb.AddForce(_rb.transform.up * _jumpStrength);
             _canjump = 0;
         } 
+    }
+
+    private bool isAirborne()
+    {
+        Debug.DrawRay(_rb.position, new Vector3(0, -1, 0), Color.white, _groundDist);
+        return false;
     }
 }

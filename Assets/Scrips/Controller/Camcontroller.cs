@@ -14,10 +14,8 @@ public class Camcontroller : MonoBehaviour
     {
         SetThirdPersonPosition();
         DistCheck();
-        
     }
-    //Sets the Cam a dist away from the Char and its rotation relativ to the pivot
-    private void SetThirdPersonPosition()
+        private void SetThirdPersonPosition()
     {
         this.transform.position = pivot.position + (pivot.forward * -_dist);
         this.transform.LookAt(pivot);

@@ -16,6 +16,7 @@ public class MovementManager : MonoBehaviour
     {
         movement = new GoundMovementTest();
         movement.InitMovement(rb,body,pivot,isGround);
+        GameMaster.current.event_PlayerChange += ChangeMovement;
     }
 
     private void Update()
@@ -23,16 +24,30 @@ public class MovementManager : MonoBehaviour
         movement.Move(PlayerInput.current.direction);
         movement.Rotate();
         
-        if(CanChange && Input.GetKeyDown(KeyCode.H))
-        {
-            movement = new FlyMovement();
-            movement.InitMovement(rb, body, pivot, isGround);
-        }
-        
     }
     private void FixedUpdate()
     {
         if (PlayerInput.current.jump) movement.Jump();
+    }
+
+    private void ChangeMovement(GameMaster.Animal pAnimal)
+    {
+        switch (pAnimal)
+        {
+            case GameMaster.Animal.eagle:
+                movement = new FlyMovement();
+                break;
+            case GameMaster.Animal.wolf:
+                movement = new GoundMovementTest();
+                break;
+        }
+        //Debug.Log("Chosen animal is " + pAnimal);
+        movement.InitMovement(rb, body, pivot, isGround);
+
+    }
+    private void OnDestroy()
+    {
+        GameMaster.current.event_PlayerChange -= ChangeMovement;
     }
 
 }

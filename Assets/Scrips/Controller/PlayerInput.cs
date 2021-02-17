@@ -25,6 +25,16 @@ public class PlayerInput : MonoBehaviour
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         jump = Input.GetKey(KeyCode.Space);
         crouch = Input.GetKey(KeyCode.LeftShift);
+
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            GameMaster.current.PlayerChange(GameMaster.Animal.wolf);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            GameMaster.current.PlayerChange(GameMaster.Animal.eagle);
+        }
     }
    
 }
