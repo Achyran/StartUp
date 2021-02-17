@@ -21,8 +21,12 @@ public class MovementManager : MonoBehaviour
     {
         movement.Move(PlayerInput.current.direction);
         movement.Rotate();
-        if (PlayerInput.current.jump) movement.Jump();
         
+        
+    }
+    private void FixedUpdate()
+    {
+        if (PlayerInput.current.jump) movement.Jump();
     }
 
 }

@@ -8,6 +8,7 @@ public class PivotController : MonoBehaviour
     public Vector2 camClamp = new Vector2(90,90);
     private float mouseX;
     private float mouseY;
+    public Transform body;
 
     private void Start()
     {
@@ -18,7 +19,17 @@ public class PivotController : MonoBehaviour
     void Update()
     {
         RotatePivot();
+        //_FixPostion();
     }
+    private void FixedUpdate()
+    {
+        _FixPostion();
+    }
+    private void _FixPostion()
+    {
+        this.transform.position = body.position;
+    }
+
 
     //Rotates The Pivot (The Parent of the Cam) depending on the mouse Position
     private void RotatePivot()

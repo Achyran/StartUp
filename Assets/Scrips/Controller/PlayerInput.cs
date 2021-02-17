@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     public static PlayerInput current;
-    public Vector2 direction { get; private set; }
+    public Vector2 direction;
     public bool jump { get; private set; }
     public bool crouch { get; private set; }
 

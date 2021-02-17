@@ -5,27 +5,28 @@ using UnityEngine;
 public class GoundMovementTest : IMovement 
 {
     private Rigidbody _rb;
-    private float _speed = 2000;
-    private float _maxSpeed = 30;
+    private float _speed = 5000;
+    private float _maxSpeed = 700;
     private Transform _body;
     private Transform _pivot;
     private float _threshold = 0.01f;
     private float _forwardStop = 0.7f;
-    private float _jumpStrenght = 200;
-    private int _jumpCd = 10;
+    private float _jumpStrenght = 300;
+    private float _jumpCd = 0.5f;
     private bool _canJump;
     private float _drag = 5;
     LayerMask whatIsGround;
 
     //Calculation
     private Vector3 projectedforce;
-    private  int _canReset;
+    private  float _canReset;
     public void InitMovement(Rigidbody pRb,Transform pBody, Transform pPivot,LayerMask pGround)
     {
         _rb = pRb;
         _body = pBody;
         _pivot = pPivot;
         whatIsGround = pGround;
+        _RbInit(pRb);
     }
     
     public void Move(Vector2 pDir)
@@ -53,7 +54,7 @@ public class GoundMovementTest : IMovement
 
             
         }
-        CounterMovement();
+        //if(isGrounded())CounterMovement();
         //Stops Player if no input is given
         
         if (pDir.magnitude <= _threshold && isGrounded())
@@ -98,15 +99,41 @@ public class GoundMovementTest : IMovement
             }
         else if(_canReset < _jumpCd)
         {
-            _canReset++;
+            _canReset += Time.deltaTime;
         }
+        //Debug.Log(_canReset);
     }
     
     //Checks if the player is grounded
     private bool isGrounded()
     {
-        Debug.DrawRay(_body.transform.position, _body.transform.up * -0.6f, Color.white);
-        if(Physics.Raycast(_body.transform.position, -_body.transform.up, 0.6f,whatIsGround))
+
+        Debug.DrawRay(_body.transform.position + new Vector3(-0.3f,0,-1.3f), _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + new Vector3(-0.3f,0,1.3f), _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + new Vector3(0.3f, 0, 1.3f), _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + new Vector3(0.3f, 0, -1.3f), _body.transform.up * -1.1f, Color.white);
+
+        if (Physics.Raycast(_body.transform.position + new Vector3(0.3f, 0, -1.3f), -_body.transform.up, 1.2f, whatIsGround))
+        {
+            _rb.drag = _drag;
+            return true;
+        }
+        if (Physics.Raycast(_body.transform.position + new Vector3(0.3f, 0, 1.3f), -_body.transform.up, 1.2f, whatIsGround))
+        {
+            _rb.drag = _drag;
+            return true;
+        }
+        if (Physics.Raycast(_body.transform.position + new Vector3(-0.3f, 0, -1.3f), -_body.transform.up, 1.2f, whatIsGround))
+        {
+            _rb.drag = _drag;
+            return true;
+        }
+        if (Physics.Raycast(_body.transform.position + new Vector3(-0.3f, 0, 1.3f), -_body.transform.up, 1.2f, whatIsGround))
+        {
+            _rb.drag = _drag;
+            return true;
+        }
+        if (Physics.Raycast(_body.transform.position, -_body.transform.up, 1.2f, whatIsGround))
         {
             _rb.drag = _drag;
             return true;
@@ -128,6 +155,13 @@ public class GoundMovementTest : IMovement
         Vector3 force = direction * _body.forward; 
 
         _rb.AddForce(force.normalized * _rb.velocity.magnitude * 1);
+    }
+
+    private void _RbInit(Rigidbody pRb)
+    {
+        pRb.mass = 1;
+        pRb.drag = 10;
+        pRb.angularDrag = 1;
     }
 
     //Shows the forces and helpfull info
