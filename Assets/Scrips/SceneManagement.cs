@@ -8,8 +8,8 @@ public class SceneManagement : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("STARTING GAME");
-        //SceneManager.LoadScene("Tobi Sceene");
-        SceneManager.LoadScene("AmkesScene");
+        SceneManager.LoadScene("Tobi Sceene");
+        //SceneManager.LoadScene("AmkesScene");
     }
 
     public void QuitGame()
@@ -21,6 +21,5 @@ public class SceneManagement : MonoBehaviour
     public void ShowErrorMessage()
     {
         Debug.Log("This function is not available yet");
-        //TODO: show error message
     }    
 }
