@@ -13,18 +13,25 @@ public class SelecTrigger : MonoBehaviour
     {
         _image = GetComponent<Image>();
         _image.color = new Vector4(0, 0, 0, 0);
-       
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
     void Update()
     {
         
         if (PlayerInput.current.select)
         {
+
+            Cursor.lockState = CursorLockMode.Confined;
             _image.color = new Vector4(255, 255, 255, 255);
             middel2Mouse = new Vector2(transform.position.x,transform.position.y) - PlayerInput.current.mousePoss;
             isSelecting = true;
-        }else if (!PlayerInput.current.select && isSelecting)
+            
+
+        }
+        else if (!PlayerInput.current.select && isSelecting)
         {
+            Cursor.lockState = CursorLockMode.Locked;
             _image.color = new Vector4(0, 0, 0, 0);
             isSelecting = false;
             float angel = Vector2.SignedAngle(new Vector2(0, -1), middel2Mouse);

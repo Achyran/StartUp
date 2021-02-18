@@ -8,6 +8,9 @@ public class GameMaster : MonoBehaviour
     public static GameMaster current;
     public enum Animal {wolf,eagle};
     public Animal currentAnimal;
+
+    //-------------------IngameStats------------------------//
+    public int runeScore;
     private void Awake()
     {
         if(current == null)
@@ -22,7 +25,6 @@ public class GameMaster : MonoBehaviour
     }
 
     public event Action<Animal> event_PlayerChange;
-
     public void PlayerChange(Animal animalIndex)
     {
         if (currentAnimal == animalIndex)   return; 
@@ -31,5 +33,14 @@ public class GameMaster : MonoBehaviour
         {
             event_PlayerChange(animalIndex);
         }
+    }
+    public event Action<int> event_RuneCollected;
+    public void RuneCollected(int index)
+    {
+        if(event_RuneCollected != null)
+        {
+            event_RuneCollected(index);
+        }
+        runeScore++;
     }
 }

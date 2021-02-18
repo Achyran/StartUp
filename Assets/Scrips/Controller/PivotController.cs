@@ -10,17 +10,14 @@ public class PivotController : MonoBehaviour
     private float mouseY;
     public Transform body;
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
         if (!PlayerInput.current.select)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+ 
             RotatePivot();
         }
         else
