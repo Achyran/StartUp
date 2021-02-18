@@ -8,6 +8,7 @@ public class FlashManager : MonoBehaviour
     void Start()
     {
         _ps = GetComponent<ParticleSystem>();
+
         GameMaster.current.event_PlayerChange += PlayFlash;
     }
 

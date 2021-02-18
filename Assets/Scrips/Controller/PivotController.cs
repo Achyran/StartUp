@@ -18,7 +18,15 @@ public class PivotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePivot();
+        if (!PlayerInput.current.select)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            RotatePivot();
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
         //_FixPostion();
     }
     private void FixedUpdate()
