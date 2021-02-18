@@ -166,6 +166,7 @@ public class GoundMovementTest : IMovement
         coll.height = 3.17f;
         coll.radius = 0.8f;
         coll.direction = 2;
+        pRb.useGravity = true;
     }
 
     //Shows the forces and helpfull info

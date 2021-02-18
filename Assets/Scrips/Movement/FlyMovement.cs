@@ -12,16 +12,17 @@ public class FlyMovement : IMovement
 
     //Neede variables
     private bool _isAirborne;
-    private float _jumpCd = 0.5f;
+    private float _jumpCd = 1f;
     private float _canjump;
     private float _jumpStrength = 500;
     private float _rotationSpeed = 100;
     private float _speed = 1000;
     private float _maxTilt = 50;
     private float _groundDist;
+    private float _artificalGravity = 30;
 
     //MathShit
-    private float _currentRoll;
+    private float _currentTilt;
 
     public void InitMovement(Rigidbody prb, Transform pBody, Transform pPivot, LayerMask pIsGorund) 
     {
@@ -34,25 +35,22 @@ public class FlyMovement : IMovement
     }
     public void Rotate() 
     {
-        float aimAngle = _pivot.rotation.eulerAngles.x;
-
-        //_body.transform.Rotate(0, 0, 1);
-        
+        _Grounded();
     }
     public void Move(Vector2 pdir) 
     {
-        if(_currentRoll > 0)
+        if(_currentTilt > 0)
         {
-            _currentRoll --;
+            _currentTilt --;
         }
-        if(_currentRoll < 0)
+        if(_currentTilt < 0)
         {
-            _currentRoll ++;
+            _currentTilt ++;
         }
         //Roatat the player around the forward axis
-        if (Mathf.Abs( pdir.x) >= 0.1f &&  Mathf.Abs(_currentRoll) <= _maxTilt)
+        if (Mathf.Abs( pdir.x) >= 0.1f &&  Mathf.Abs(_currentTilt) <= _maxTilt)
         {
-            _currentRoll += Time.deltaTime * _rotationSpeed * pdir.x;
+            _currentTilt += Time.deltaTime * _rotationSpeed * -pdir.x;
         }
        if(Mathf.Abs(pdir.y)>= 0.1f)
         {
@@ -63,11 +61,12 @@ public class FlyMovement : IMovement
         _UpdateJumpCD();
         if (_rb.velocity.magnitude > 0.1f)
         {
-
+            
             _rb.transform.rotation = Quaternion.LookRotation(new Vector3(_rb.velocity.x, 0, _rb.velocity.z));
         }else
             _rb.transform.rotation = Quaternion.LookRotation(new Vector3(_pivot.forward.x, 0, _pivot.forward.z));
-        _rb.transform.Rotate(0,0,_currentRoll);
+        _rb.transform.Rotate(0,0,_currentTilt);
+        _rb.AddForce(0, -_artificalGravity * Time.deltaTime, 0);
 
     }
     private void _UpdateJumpCD()
@@ -81,11 +80,12 @@ public class FlyMovement : IMovement
     {
         pRb.mass = 1;
         pRb.drag = 0.5f;
-        pRb.angularDrag = 10;
+        pRb.angularDrag = 50;
         CapsuleCollider coll =  pRb.GetComponent<CapsuleCollider>();
         coll.height = 2.36f;
         coll.radius = 0.43f;
         coll.direction = 0;
+        pRb.useGravity = false;
     }
     public void Jump() 
     {
@@ -96,9 +96,13 @@ public class FlyMovement : IMovement
         } 
     }
 
-    private bool isAirborne()
+    private bool _Grounded()
     {
         Debug.DrawRay(_rb.position, new Vector3(0, -1, 0), Color.white, _groundDist);
+        if(Physics.Raycast(_rb.transform.position,new Vector3(0, -1, 0), _groundDist, _whatisGround))
+        {
+            return true;
+        }
         return false;
     }
 }
