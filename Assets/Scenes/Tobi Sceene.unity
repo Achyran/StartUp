@@ -5087,7 +5087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674659735}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.15, y: 7.69, z: 0.56}
+  m_LocalPosition: {x: -0.85, y: 7.68, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 430432828}
@@ -5369,7 +5369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 1835991215}
-  dist: 7
+  dist: 10
   minDist: 1.2
   camSpeed: 0.5
 --- !u!1001 &1151984046

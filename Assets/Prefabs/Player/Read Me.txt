@@ -1,0 +1,5 @@
+How to Use the player:
+1. Deleat the camera in the chosen sceene;
+2. Use the layer mask to tag all walkable space as Ground;
+3. Drag and drop the Prefab in you sceene.
+4. The Player model will be only visable in play mode;

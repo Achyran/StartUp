@@ -31,7 +31,7 @@ public class RunCollector : MonoBehaviour, ICollectable
         {
             isCollectable = false;
             GameMaster.current.runeScore++;
-            Debug.Log("RuneCollected");
+            
         }
     }
 }
