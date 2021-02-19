@@ -18,11 +18,12 @@ public class FlyMovement : IMovement
     private float _rotationSpeed = 100;
     private float _speed = 1000;
     private float _maxTilt = 50;
-    private float _groundDist = 0.6f;
+    private float _groundDist = 0.8f;
     private float _artificalGravity = 30;
 
     //MathShit
     private float _currentTilt;
+    private CapsuleCollider _coll;
 
     public void InitMovement(Rigidbody prb, Transform pBody, Transform pPivot, LayerMask pIsGorund) 
     {
@@ -48,15 +49,18 @@ public class FlyMovement : IMovement
             _currentTilt++;
         }
         //Roatat the player around the forward axis
-        if (Mathf.Abs(pdir.x) >= 0.1f && Mathf.Abs(_currentTilt) <= _maxTilt)
+
+        if (!_Grounded())
         {
-            _currentTilt += Time.deltaTime * _rotationSpeed * -pdir.x;
+            Tilt(pdir);
+            _coll.height = 2.36f;
         }
+        else _coll.height = 0.8f;
         if (Mathf.Abs(pdir.y) >= 0.1f)
         {
             rb.AddForce(_pivot.forward * pdir.y * Time.deltaTime * _speed);
-
         }
+
 
         _UpdateJumpCD();
         if (!_Grounded())
@@ -73,6 +77,13 @@ public class FlyMovement : IMovement
         rb.AddForce(0, -_artificalGravity * Time.deltaTime, 0);
 
     }
+    private void Tilt(Vector2 pdir)
+    {
+        if (Mathf.Abs(pdir.x) >= 0.1f && Mathf.Abs(_currentTilt) <= _maxTilt)
+        {
+            _currentTilt += Time.deltaTime * _rotationSpeed * -pdir.x;
+        }
+    }
     private void _UpdateJumpCD()
     {
         if(_jumpCd <= _canjump) return;
@@ -85,20 +96,22 @@ public class FlyMovement : IMovement
         pRb.mass = 1;
         pRb.drag = 0.5f;
         pRb.angularDrag = 50;
-        CapsuleCollider coll =  pRb.GetComponent<CapsuleCollider>();
-        coll.height = 2.36f;
-        coll.radius = 0.43f;
-        coll.direction = 0;
+        _coll =  pRb.GetComponent<CapsuleCollider>();
+        _coll.height = 2.36f;
+        _coll.radius = 0.43f;
+        _coll.direction = 0;
         pRb.useGravity = false;
     }
-    public void Jump() 
+    public bool Jump() 
     {
-        if( _jumpCd <= _canjump) 
+        if (_jumpCd <= _canjump)
         {
             rb.AddForce(rb.transform.up * _jumpStrength);
             _canjump = 0;
             rb.drag = 0.5f;
-        } 
+            return true;
+        }
+        return false;
     }
 
     private bool _Grounded()

@@ -35,7 +35,7 @@ public class SelecTrigger : MonoBehaviour
             _image.color = new Vector4(0, 0, 0, 0);
             isSelecting = false;
             float angel = Vector2.SignedAngle(new Vector2(0, -1), middel2Mouse);
-            Debug.Log(angel);
+            //Debug.Log(angel);
             if (angel < 0) GameMaster.current.PlayerChange(GameMaster.Animal.wolf);
             else GameMaster.current.PlayerChange(GameMaster.Animal.eagle);
         }

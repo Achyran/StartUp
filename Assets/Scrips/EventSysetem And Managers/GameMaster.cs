@@ -6,6 +6,7 @@ using System;
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster current;
+    public List<GameObject> AnimalModels;
     public enum Animal {wolf,eagle};
     public Animal currentAnimal;
 

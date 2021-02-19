@@ -9,5 +9,6 @@ public interface IMovement
     void InitMovement(Rigidbody prb, Transform pBody, Transform pPivot,LayerMask isGorund);
     void Rotate();
     void Move(Vector2 pdir);
-    void Jump();
+    //Returns true if the jump went trough
+    bool Jump();
 }

@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class ModelManager : MonoBehaviour
 {
-    public List<GameObject> models;
-    public GameObject StartModel;
     private GameObject _currentModel;
+    public MovementManager movement;
+    private Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
         GameMaster.current.event_PlayerChange += ChangeModel;
-        SpawnInstance(StartModel);
+        SpawnInstance(GameMaster.current.AnimalModels[ (int)GameMaster.current.currentAnimal]);
+        _animator = _currentModel.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if(_animator != null)
+        {
+            movement.Animation(_animator);
+        }
     }
 
     private void ChangeModel(GameMaster.Animal pAnimal)
     {
-        SpawnInstance(models[(int)pAnimal]);
+        SpawnInstance(GameMaster.current.AnimalModels[(int)pAnimal]);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     private void OnDestroy()
     {
         GameMaster.current.event_PlayerChange -= ChangeModel;
@@ -34,5 +39,8 @@ public class ModelManager : MonoBehaviour
         if (_currentModel != null) Destroy(_currentModel);
         _currentModel = Instantiate(pGameobject, this.transform);
         _currentModel.transform.localPosition = new Vector3(0, 0, 0);
+        _animator = _currentModel.GetComponent<Animator>();
     }
+
+   
 }

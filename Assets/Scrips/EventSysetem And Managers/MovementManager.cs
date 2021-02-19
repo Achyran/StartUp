@@ -9,8 +9,11 @@ public class MovementManager : MonoBehaviour
     public Transform body;
     public LayerMask isGround;
     //private bool CanChange = true;
+    private bool _animateJump;
+
 
     public IMovement movement;
+    private int _currentModelIndex;
 
     private void Start()
     {
@@ -23,11 +26,13 @@ public class MovementManager : MonoBehaviour
     {
         movement.Move(PlayerInput.current.direction);
         movement.Rotate();
+        //Animation();
         
     }
     private void FixedUpdate()
     {
-        if (PlayerInput.current.jump) movement.Jump();
+        if (PlayerInput.current.jump) 
+            if(movement.Jump()) _animateJump =  true ;
     }
 
     private void ChangeMovement(GameMaster.Animal pAnimal)
@@ -48,6 +53,18 @@ public class MovementManager : MonoBehaviour
     private void OnDestroy()
     {
         GameMaster.current.event_PlayerChange -= ChangeMovement;
+    }
+
+    public void Animation(Animator panimator)
+    {
+        if (_animateJump)
+        {
+            panimator.SetTrigger("Jump");
+            Debug.Log("Jumped");
+            _animateJump = false;
+        }
+        panimator.SetBool("IsGrounded", movement.isGrounded);
+        panimator.SetBool("IsMoving", (movement.rb.velocity.magnitude > 0.2f));
     }
 
 }

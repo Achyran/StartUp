@@ -74,14 +74,16 @@ public class GoundMovementTest : IMovement
     }
 
     //Applies jumpforce
-    public void Jump() 
+    public bool Jump() 
     {
         if (_isGrounded() && _canJump)
-        {
+        { 
             rb.AddForce(0, _jumpStrenght, 0);
             _canJump = false;
             _canReset = 0;
+            return true;
         }
+        return false;
     }
     //Returns relativspeed
     private float relativspeed()
