@@ -13,25 +13,25 @@ public class RunCollector : MonoBehaviour, ICollectable
     void Start()
     {
         isCollectable = true;
-      
+        Subscripe();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
-        {
-            Collected();
-        }
+        GameMaster.current.Collected(index);
     }
 
 
-    public void Collected()
+    public void Collected(int pIndex)
     {
-        if(isCollectable)
+        if(pIndex == index && isCollectable)
         {
+            UnSubscripe();
             isCollectable = false;
-            GameMaster.current.runeScore++;
-            
+            Debug.Log("Rune Collected");
         }
     }
+    public void Subscripe() { GameMaster.current.event_Collected += Collected;}
+    public void UnSubscripe() { GameMaster.current.event_Collected -= Collected; }
 }

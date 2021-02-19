@@ -22,6 +22,7 @@ public class GameMaster : MonoBehaviour
         {
             Debug.LogError("GameMaster allready exist, Destroying this !");
             Destroy(current);
+            return;
         }
     }
 
@@ -33,6 +34,16 @@ public class GameMaster : MonoBehaviour
         if(event_PlayerChange != null)
         {
             event_PlayerChange(animalIndex);
+        }
+    }
+    public event Action<int> event_Collected;
+
+    public void Collected(int pIndex)
+    {
+        if(event_Collected != null)
+        {
+            runeScore++;
+            event_Collected(pCollectable);
         }
     }
 }

@@ -67,7 +67,7 @@ public class GoundMovementTest : IMovement
     //Rotates the pysics body when moving (when not the cam can spin indvidualy form the player)
     public void Rotate()
     {
-        if (rb.velocity.magnitude >= 0.5f)
+        if (rb.velocity.magnitude >= 0.5f && _isGrounded())
         {
             rb.transform.localRotation = Quaternion.Euler(0, _pivot.rotation.eulerAngles.y, 0);
         }

@@ -3,7 +3,17 @@ guid: b60ae7ad0783ec84f93e28d117d441d5
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass_terrain
+    second: {fileID: 2100000, guid: 7f9125f83d9fdde4fa7de8a9fd714339, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sand_and_cliff
+    second: {fileID: 2100000, guid: d175a4aa1f2daf449aa6aa175e472f8c, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
