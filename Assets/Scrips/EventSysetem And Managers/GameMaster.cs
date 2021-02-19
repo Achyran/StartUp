@@ -22,6 +22,7 @@ public class GameMaster : MonoBehaviour
         {
             Debug.LogError("GameMaster allready exist, Destroying this !");
             Destroy(current);
+            return;
         }
     }
 
