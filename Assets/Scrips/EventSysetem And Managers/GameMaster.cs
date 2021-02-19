@@ -36,4 +36,14 @@ public class GameMaster : MonoBehaviour
             event_PlayerChange(animalIndex);
         }
     }
+    public event Action<int> event_Collected;
+
+    public void Collected(int pIndex)
+    {
+        if(event_Collected != null)
+        {
+            runeScore++;
+            event_Collected(pCollectable);
+        }
+    }
 }

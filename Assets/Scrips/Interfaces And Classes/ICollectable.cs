@@ -7,6 +7,7 @@ public interface ICollectable
     bool isCollectable { get; set; }
     int index { get; set; }
 
-
-    void Collected();
+    void Subscripe();
+    void UnSubscripe();
+    void Collected(int pIndex);
 }
