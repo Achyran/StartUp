@@ -5,21 +5,31 @@ using UnityEngine;
 public class RunCollector : MonoBehaviour, ICollectable
 {
     public bool isCollectable { get; set; }
-    public int index { get; set; }
-
+    public int index;
+    public string text;
 
 
     // Start is called before the first frame update
     void Start()
     {
         isCollectable = true;
-        Subscripe();
+        ICollectable_Subscripe();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "Player")
+        {
+            GameMaster.current.Collected(index);
+            GameMaster.current.ShowText(text);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
         if(other.tag == "Player")
-        GameMaster.current.Collected(index);
+        {
+            GameMaster.current.StopShowingText();
+        }
     }
 
 
@@ -27,11 +37,12 @@ public class RunCollector : MonoBehaviour, ICollectable
     {
         if(pIndex == index && isCollectable)
         {
-            UnSubscripe();
+            ICollectable_UnSubscripe();
             isCollectable = false;
             Debug.Log("Rune Collected");
         }
     }
-    public void Subscripe() { GameMaster.current.event_Collected += Collected;}
-    public void UnSubscripe() { GameMaster.current.event_Collected -= Collected; }
+    public void ICollectable_Subscripe() { GameMaster.current.event_Collected += Collected;}
+    public void ICollectable_UnSubscripe() { GameMaster.current.event_Collected -= Collected;}
+
 }

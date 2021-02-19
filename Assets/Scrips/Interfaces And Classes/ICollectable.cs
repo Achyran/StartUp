@@ -5,9 +5,8 @@ using UnityEngine;
 public interface ICollectable
 {
     bool isCollectable { get; set; }
-    int index { get; set; }
 
-    void Subscripe();
-    void UnSubscripe();
+    void ICollectable_Subscripe();
+    void ICollectable_UnSubscripe();
     void Collected(int pIndex);
 }

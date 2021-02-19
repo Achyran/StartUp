@@ -82,6 +82,7 @@ public class FlyMovement : IMovement
         if (Mathf.Abs(pdir.x) >= 0.1f && Mathf.Abs(_currentTilt) <= _maxTilt)
         {
             _currentTilt += Time.deltaTime * _rotationSpeed * -pdir.x;
+            Debug.Log(_currentTilt);
         }
     }
     private void _UpdateJumpCD()

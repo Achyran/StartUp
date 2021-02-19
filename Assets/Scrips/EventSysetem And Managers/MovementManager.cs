@@ -60,7 +60,6 @@ public class MovementManager : MonoBehaviour
         if (_animateJump)
         {
             panimator.SetTrigger("Jump");
-            Debug.Log("Jumped");
             _animateJump = false;
         }
         panimator.SetBool("IsGrounded", movement.isGrounded);

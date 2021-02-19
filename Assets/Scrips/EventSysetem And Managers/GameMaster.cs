@@ -40,10 +40,28 @@ public class GameMaster : MonoBehaviour
 
     public void Collected(int pIndex)
     {
-        if(event_Collected != null)
+        if (event_Collected != null)
         {
             runeScore++;
-            event_Collected(pCollectable);
+            event_Collected(pIndex);
+        }
+    }
+    public event Action<string> event_ShowText;
+
+    public void ShowText(string pText)
+    {
+        if (event_ShowText != null)
+        {
+            event_ShowText(pText);
+        }
+    }
+    public event Action event_StopShowingText;
+
+    public void StopShowingText()
+    {
+        if (event_ShowText != null)
+        {
+            event_StopShowingText();
         }
     }
 }
