@@ -63,7 +63,10 @@ public class FlyMovement : IMovement
             _coll.height = 2.36f;
         }
         else _coll.height = 0.8f;
-        if (Mathf.Abs(pdir.y) >= 0.1f)
+        if (pdir.y >= 0.1f)
+        {
+            rb.AddForce(_pivot.forward * pdir.y * Time.deltaTime * _speed);
+        }else if(pdir.y <= -0.1f && rb.velocity.magnitude >= 3)
         {
             rb.AddForce(_pivot.forward * pdir.y * Time.deltaTime * _speed);
         }
