@@ -16,16 +16,18 @@ public class GoundMovementTest : IMovement
     private bool _canJump;
     private float _drag = 5;
     LayerMask whatIsGround;
+    LayerMask whatIsWater;
     public bool isGrounded { get; set; }
     //Calculation
     private Vector3 projectedforce;
     private  float _canReset;
-    public void InitMovement(Rigidbody pRb,Transform pBody, Transform pPivot,LayerMask pGround)
+    public void InitMovement(Rigidbody pRb,Transform pBody, Transform pPivot,LayerMask pGround, LayerMask pWater)
     {
         rb = pRb;
         _body = pBody;
         _pivot = pPivot;
         whatIsGround = pGround;
+        whatIsWater = pWater;
         _RbInit(pRb);
     }
     
@@ -68,6 +70,7 @@ public class GoundMovementTest : IMovement
     public void Rotate()
     {
         if (rb.velocity.magnitude >= 0.5f && _isGrounded())
+        if (rb.velocity.magnitude >= 0.5f && _isGrounded())
         {
             rb.transform.localRotation = Quaternion.Euler(0, _pivot.rotation.eulerAngles.y, 0);
         }
@@ -109,10 +112,16 @@ public class GoundMovementTest : IMovement
     private bool _isGrounded()
     {
 
-        Debug.DrawRay(_body.transform.position + new Vector3(-0.3f,0,-1.3f), _body.transform.up * -1.1f, Color.white);
-        Debug.DrawRay(_body.transform.position + new Vector3(-0.3f,0,1.3f), _body.transform.up * -1.1f, Color.white);
-        Debug.DrawRay(_body.transform.position + new Vector3(0.3f, 0, 1.3f), _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + new Vector3(-0.3f,0,-1.3f) , _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + new Vector3(-0.3f,0,1.3f) , _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + new Vector3(0.3f, 0, 1.3f) , _body.transform.up * -1.1f, Color.white);
         Debug.DrawRay(_body.transform.position + new Vector3(0.3f, 0, -1.3f), _body.transform.up * -1.1f, Color.white);
+        if (Physics.Raycast(_body.transform.position, -_body.transform.up, 1.5f, whatIsWater))
+        {
+            Debug.Log("is in water");
+            rb.transform.position = new Vector3(170,15,83);
+            return false;
+        }
 
         if (Physics.Raycast(_body.transform.position + new Vector3(0.3f, 0, -1.3f), -_body.transform.up, 1.2f, whatIsGround))
         {

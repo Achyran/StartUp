@@ -8,6 +8,7 @@ public class MovementManager : MonoBehaviour
     public Transform pivot;
     public Transform body;
     public LayerMask isGround;
+    public LayerMask isWater;
     //private bool CanChange = true;
     private bool _animateJump;
 
@@ -18,7 +19,7 @@ public class MovementManager : MonoBehaviour
     private void Start()
     {
         movement = new GoundMovementTest();
-        movement.InitMovement(rb,body,pivot,isGround);
+        movement.InitMovement(rb,body,pivot,isGround, isWater);
         GameMaster.current.event_PlayerChange += ChangeMovement;
     }
 
@@ -47,7 +48,7 @@ public class MovementManager : MonoBehaviour
                 break;
         }
         //Debug.Log("Chosen animal is " + pAnimal);
-        movement.InitMovement(rb, body, pivot, isGround);
+        movement.InitMovement(rb, body, pivot, isGround, isWater);
 
     }
     private void OnDestroy()

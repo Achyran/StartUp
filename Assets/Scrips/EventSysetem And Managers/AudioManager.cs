@@ -1,11 +1,15 @@
 ﻿using UnityEngine.Audio;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager current;
+    private float musikcheck;
+    private float backgroundMusikCd;
  
     void Awake()
     {
@@ -19,8 +23,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
 
         foreach(Sound s in sounds)
         {
@@ -78,7 +80,45 @@ public class AudioManager : MonoBehaviour
         }
         return s.source.isPlaying;
     }
-    
+    private void Update()
+    {
+        BackgroundMusik();
+        Eneviroment();
+    }
+    private void Eneviroment()
+    {
+        if (backgroundMusikCd <= 0)
+        {
+            Play("Sound_Enviroment");
+            backgroundMusikCd = UnityEngine.Random.Range(30, 60);
+        }
+        else backgroundMusikCd -= Time.deltaTime;
+    }
+    private void BackgroundMusik()
+    {
+
+        if (musikcheck <= 0)
+        {
+            musikcheck = 30;
+            if (!isPlaying("Musik_dreaming") && !isPlaying("Musik_forest") && !isPlaying("Musik_main"))
+            {
+                int rand = UnityEngine.Random.Range(0,3);
+                switch (rand)
+                {
+                    case 0:
+                        Play("Musik_dreaming");
+                        break;
+                    case 1:
+                        Play("Musik_forest");
+                        break;
+                    case 2:
+                        Play("Musik_main");
+                        break;
+                }
+            }
+        }
+        else { musikcheck -= Time.deltaTime; }
+    }
 
 
 }

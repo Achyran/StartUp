@@ -25,7 +25,7 @@ public class FlyMovement : IMovement
     private float _currentTilt;
     private CapsuleCollider _coll;
 
-    public void InitMovement(Rigidbody prb, Transform pBody, Transform pPivot, LayerMask pIsGorund) 
+    public void InitMovement(Rigidbody prb, Transform pBody, Transform pPivot, LayerMask pIsGorund,LayerMask pIsWater) 
     {
         rb = prb;
         _body = pBody;

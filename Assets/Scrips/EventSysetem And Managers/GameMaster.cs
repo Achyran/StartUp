@@ -33,6 +33,7 @@ public class GameMaster : MonoBehaviour
         currentAnimal = animalIndex;
         if(event_PlayerChange != null)
         {
+            AudioManager.current.Play("Sound_transformation");
             event_PlayerChange(animalIndex);
         }
     }
