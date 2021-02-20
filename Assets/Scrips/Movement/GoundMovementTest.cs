@@ -21,6 +21,7 @@ public class GoundMovementTest : IMovement
     //Calculation
     private Vector3 projectedforce;
     private  float _canReset;
+    private Vector3 spawn = new Vector3(0,0,0);
     public void InitMovement(Rigidbody pRb,Transform pBody, Transform pPivot,LayerMask pGround, LayerMask pWater)
     {
         rb = pRb;
@@ -120,7 +121,7 @@ public class GoundMovementTest : IMovement
         {
             Debug.Log("is in water");
             GameMaster.current.ShowText("Water is not implemented yet");
-            rb.transform.position = new Vector3(170,15,83);
+            rb.transform.localPosition = spawn;
             return false;
         }
 
