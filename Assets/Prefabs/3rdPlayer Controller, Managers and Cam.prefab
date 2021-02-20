@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 8937870473682252787}
-  dist: 10
+  dist: 15
   minDist: 0.5
-  camSpeed: 20
+  camSpeed: 30
 --- !u!1 &6283122591460672647
 GameObject:
   m_ObjectHideFlags: 0
