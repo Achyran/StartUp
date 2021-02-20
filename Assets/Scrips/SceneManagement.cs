@@ -2,14 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneManagement : MonoBehaviour
 {
     public float delayTime = 5f;
+    public Button playButton;
+    public Button optionsButton;
+    public Button extrasButton;
+    public Button exitButton;
 
     public void StartGame()
     {
         Debug.Log("STARTING GAME");
+        playButton.interactable = false;
+        optionsButton.interactable = false;
+        extrasButton.interactable = false;
+        exitButton.interactable = false;
         Invoke("DelayedAction", delayTime);
     }
 
@@ -26,7 +35,6 @@ public class SceneManagement : MonoBehaviour
 
     public void DelayedAction()
     {
-        SceneManager.LoadScene("Tobi Sceene");
+        SceneManager.LoadScene("TerrainScene");
     }
 }
-© 2021 GitHu
