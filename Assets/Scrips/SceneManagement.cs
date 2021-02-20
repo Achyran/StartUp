@@ -6,11 +6,16 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 {
     public float delayTime = 5f;
+    private bool canStart = true;
 
     public void StartGame()
     {
-        Debug.Log("STARTING GAME");
-        Invoke("DelayedAction", delayTime);
+        if (canStart)
+        {
+            Debug.Log("STARTING GAME");
+            Invoke("DelayedAction", delayTime);
+            canStart = false;
+        }
     }
 
     public void QuitGame()
