@@ -1194,7 +1194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 4
-  playButton: {fileID: 150137084}
 --- !u!114 &868917044
 MonoBehaviour:
   m_ObjectHideFlags: 0
