@@ -119,6 +119,7 @@ public class GoundMovementTest : IMovement
         if (Physics.Raycast(_body.transform.position, -_body.transform.up, 1.5f, whatIsWater))
         {
             Debug.Log("is in water");
+            GameMaster.current.ShowText("Whater is not implemented jet");
             rb.transform.position = new Vector3(170,15,83);
             return false;
         }
