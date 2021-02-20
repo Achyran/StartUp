@@ -25,11 +25,10 @@ public class SceneManagement : MonoBehaviour
     public void ShowErrorMessage()
     {
         Debug.Log("This function is not available yet");
-    }
+    }    
 
     public void DelayedAction()
     {
         SceneManager.LoadScene("TerrainScene");
     }
 }
-© 2021 GitHu
