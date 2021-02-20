@@ -9,8 +9,8 @@ public class RandomScale : MonoBehaviour
     private float currentScale = 1;
     private void Start()
     {
-        currentScale = Random.Range(1,maxScale);
+        currentScale = Random.Range(1, maxScale);
         transform.localScale = new Vector3(currentScale, currentScale, currentScale);
-        transform.position = new Vector3(transform.position.x,offsetY*currentScale, transform.position.z);
+        transform.position = new Vector3(transform.position.x, offsetY * currentScale / 100 + transform.position.y, transform.position.z);
     }
 }
