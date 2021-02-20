@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3538424248881141189}
   - component: {fileID: 4752586366239215592}
   - component: {fileID: 4926519640428415650}
+  - component: {fileID: 4134661944749937731}
   m_Layer: 0
   m_Name: polySurface1
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4134661944749937731
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501601502225813021}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6329158148709259305, guid: 55aaf280568987847a60a532e2d9c044, type: 3}
 --- !u!1 &7692587459501986529
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +183,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8706173705399582658}
   - component: {fileID: 9176141032614164587}
-  - component: {fileID: 9176141032614164584}
   - component: {fileID: 9176141032614164586}
   m_Layer: 0
   m_Name: runestone
@@ -206,20 +220,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20.08
   m_Center: {x: 0, y: 5.72, z: 0}
---- !u!136 &9176141032614164584
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8329788453172569464}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.78
-  m_Height: 10.15
-  m_Direction: 1
-  m_Center: {x: -0.3, y: 4.78, z: 0}
 --- !u!114 &9176141032614164586
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4523544215244269332}
   - component: {fileID: 742226144618833308}
   - component: {fileID: 575015841199778464}
-  - component: {fileID: 3726401449618577692}
+  - component: {fileID: 3878901213216748157}
   m_Layer: 0
   m_Name: Pine_Twisted_2
   m_TagString: Untagged
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3726401449618577692
-MeshCollider:
+--- !u!136 &3878901213216748157
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,10 +90,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1979182165546853883, guid: 63575397519a2b543bd2e77207d4db83, type: 3}
+  m_Radius: 36.1
+  m_Height: 610.7
+  m_Direction: 1
+  m_Center: {x: 0, y: -30.2, z: 0}
 --- !u!1 &7842936659603332206
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7842936659603332206}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

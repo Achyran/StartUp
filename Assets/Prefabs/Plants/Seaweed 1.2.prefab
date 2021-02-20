@@ -323,7 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 141338387467502157}
   - component: {fileID: 38923626694919918}
-  - component: {fileID: 4492234557656613098}
+  - component: {fileID: 5337831349804636228}
   m_Layer: 0
   m_Name: Sea_weed_1
   m_TagString: Untagged
@@ -405,7 +405,7 @@ SkinnedMeshRenderer:
     m_Center: {x: -52.103493, y: 1.7126904, z: 2.4965222}
     m_Extent: {x: 54.041985, y: 15.807449, z: 2.4964612}
   m_DirtyAABB: 0
---- !u!114 &4492234557656613098
+--- !u!114 &5337831349804636228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,9 +414,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6682433175538120629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d862310edc041aa478364c480ce72c52, type: 3}
+  m_Script: {fileID: 11500000, guid: cb97ed195a1411c42a312c8fce2f9fb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   allMaterials:
-  - {fileID: 2100000, guid: 0455b1a986fa2ae439f99770a8a6985f, type: 2}
   - {fileID: 2100000, guid: 68ba667fdeebdf24eb205cc1cf16d02d, type: 2}
+  - {fileID: 2100000, guid: 0455b1a986fa2ae439f99770a8a6985f, type: 2}
