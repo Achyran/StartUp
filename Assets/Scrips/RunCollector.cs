@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RunCollector : MonoBehaviour, ICollectable
 {
-    public bool isCollectable { get; set; }
+    public bool isCollectable { get; set; } = true;
     public int index;
     public string text;
+
 
 
     // Start is called before the first frame update
@@ -14,13 +15,19 @@ public class RunCollector : MonoBehaviour, ICollectable
     {
         isCollectable = true;
         ICollectable_Subscripe();
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            GameMaster.current.Collected(index);
+            if (isCollectable)
+            {
+                isCollectable = false;
+                GameMaster.current.Collected(index);
+                AudioManager.current.Play("Sound_rune_Collection");
+            }
             GameMaster.current.ShowText(text);
         }
     }

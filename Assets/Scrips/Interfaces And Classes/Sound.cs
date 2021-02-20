@@ -1,4 +1,5 @@
 ﻿using UnityEngine.Audio;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,7 +16,7 @@ public class Sound
 
     public bool loop;
     [Header("Origin (null = global)")]
-    public GameObject gameObject;
+    public List<GameObject> gameObjects;
     
 
     [HideInInspector]

@@ -37,6 +37,13 @@ public class FlyMovement : IMovement
     public void Rotate() 
     {
         isGrounded =_Grounded();
+        if (!isGrounded && !AudioManager.current.isPlaying("Sound_fly_wind"))
+        {
+            AudioManager.current.Play("Sound_fly_wind");
+        }else if(isGrounded && AudioManager.current.isPlaying("Sound_fly_wind"))
+        {
+            AudioManager.current.Pause("Sound_fly_wind");
+        }
     }
     public void Move(Vector2 pdir)
     {
@@ -110,6 +117,7 @@ public class FlyMovement : IMovement
             rb.AddForce(rb.transform.up * _jumpStrength);
             _canjump = 0;
             rb.drag = 0.5f;
+            AudioManager.current.Play("Sound_wings");
             return true;
         }
         return false;

@@ -24,23 +24,22 @@ public class AudioManager : MonoBehaviour
 
         foreach(Sound s in sounds)
         {
-            if(s.gameObject == null)
+            if(s.gameObjects.Count == 0)
             {
                 s.source = gameObject.AddComponent<AudioSource>();
             }
             else
             {
-                s.source = s.gameObject.AddComponent<AudioSource>();
+                for(int i = 0; i <s.gameObjects.Count; i ++ )
+                {
+                    s.source = s.gameObjects[i].AddComponent<AudioSource>();
+                }
             }
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-    }
-    public void Start()
-    {
-        Play("Start");
     }
 
     public void Play(string name)
