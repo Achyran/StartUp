@@ -9,12 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 0f44ab0b92b13ae429c598fa1fc1c264
   - enabled: 1
-    path: Assets/Scenes/Tobi Sceene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/AmkesScene.unity
-    guid: b991dd23fe884564a9c7bdc32ef6d0e5
-  - enabled: 1
     path: Assets/Scenes/TerrainScene.unity
     guid: de50ac841c041c24fb59881a5471e9ba
   m_configObjects: {}
