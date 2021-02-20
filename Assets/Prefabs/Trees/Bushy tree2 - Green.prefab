@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3f8f296272ad347b404b25556feae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: 1.5
+  maxScale: 2
   offsetY: 3.58
 --- !u!1 &4520115090243146854
 GameObject:
