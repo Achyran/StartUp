@@ -15,15 +15,17 @@ public class PivotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         if (!PlayerInput.current.select)
         {
- 
             RotatePivot();
         }
-        else
+        else if(GameMaster.current.runeScore >= 3)
         {
             Cursor.lockState = CursorLockMode.Confined;
         }
+        
         //_FixPostion();
     }
     private void FixedUpdate()

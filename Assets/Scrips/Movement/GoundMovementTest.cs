@@ -112,34 +112,34 @@ public class GoundMovementTest : IMovement
     private bool _isGrounded()
     {
 
-        Debug.DrawRay(_body.transform.position + new Vector3(-0.3f,0,-1.3f) , _body.transform.up * -1.1f, Color.white);
-        Debug.DrawRay(_body.transform.position + new Vector3(-0.3f,0,1.3f) , _body.transform.up * -1.1f, Color.white);
-        Debug.DrawRay(_body.transform.position + new Vector3(0.3f, 0, 1.3f) , _body.transform.up * -1.1f, Color.white);
-        Debug.DrawRay(_body.transform.position + new Vector3(0.3f, 0, -1.3f), _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + rb.rotation * new Vector3(-0.3f, 0, -1.3f), _body.transform.up * -1.1f, Color.white); ;
+        Debug.DrawRay(_body.transform.position + rb.rotation * new Vector3(-0.3f,0,1.3f) , _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + rb.rotation * new Vector3(0.3f, 0, 1.3f) , _body.transform.up * -1.1f, Color.white);
+        Debug.DrawRay(_body.transform.position + rb.rotation * new Vector3(0.3f, 0, -1.3f), _body.transform.up * -1.1f, Color.white);
         if (Physics.Raycast(_body.transform.position, -_body.transform.up, 1.5f, whatIsWater))
         {
             Debug.Log("is in water");
-            GameMaster.current.ShowText("Whater is not implemented jet");
+            GameMaster.current.ShowText("Water is not implemented yet");
             rb.transform.position = new Vector3(170,15,83);
             return false;
         }
 
-        if (Physics.Raycast(_body.transform.position + new Vector3(0.3f, 0, -1.3f), -_body.transform.up, 1.2f, whatIsGround))
+        if (Physics.Raycast(_body.transform.position + rb.rotation * new Vector3(0.3f, 0, -1.3f), -_body.transform.up, 1.2f, whatIsGround))
         {
             rb.drag = _drag;
             return true;
         }
-        if (Physics.Raycast(_body.transform.position + new Vector3(0.3f, 0, 1.3f), -_body.transform.up, 1.2f, whatIsGround))
+        if (Physics.Raycast(_body.transform.position + rb.rotation * new Vector3(0.3f, 0, 1.3f), -_body.transform.up, 1.2f, whatIsGround))
         {
             rb.drag = _drag;
             return true;
         }
-        if (Physics.Raycast(_body.transform.position + new Vector3(-0.3f, 0, -1.3f), -_body.transform.up, 1.2f, whatIsGround))
+        if (Physics.Raycast(_body.transform.position + rb.rotation * new Vector3(-0.3f, 0, -1.3f), -_body.transform.up, 1.2f, whatIsGround))
         {
             rb.drag = _drag;
             return true;
         }
-        if (Physics.Raycast(_body.transform.position + new Vector3(-0.3f, 0, 1.3f), -_body.transform.up, 1.2f, whatIsGround))
+        if (Physics.Raycast(_body.transform.position + rb.rotation * new Vector3(-0.3f, 0, 1.3f), -_body.transform.up, 1.2f, whatIsGround))
         {
             rb.drag = _drag;
             return true;

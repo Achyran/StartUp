@@ -19,7 +19,7 @@ public class SelecTrigger : MonoBehaviour
     void Update()
     {
         
-        if (PlayerInput.current.select)
+        if (PlayerInput.current.select && GameMaster.current.runeScore >= 3)
         {
 
             Cursor.lockState = CursorLockMode.Confined;

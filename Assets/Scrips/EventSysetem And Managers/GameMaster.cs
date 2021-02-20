@@ -11,7 +11,7 @@ public class GameMaster : MonoBehaviour
     public Animal currentAnimal;
 
     //-------------------IngameStats------------------------//
-    public int runeScore;
+    public int runeScore { get; private set; }
     private void Awake()
     {
         if(current == null)
@@ -31,7 +31,7 @@ public class GameMaster : MonoBehaviour
     {
         if (currentAnimal == animalIndex)   return; 
         currentAnimal = animalIndex;
-        if(event_PlayerChange != null)
+        if(event_PlayerChange != null && runeScore >= 3)
         {
             AudioManager.current.Play("Sound_transformation");
             event_PlayerChange(animalIndex);
@@ -53,6 +53,7 @@ public class GameMaster : MonoBehaviour
     {
         if (event_ShowText != null)
         {
+            if (runeScore == 3) pText += "\n \n you feal Empowerd, hold f to transform";
             event_ShowText(pText);
         }
     }
