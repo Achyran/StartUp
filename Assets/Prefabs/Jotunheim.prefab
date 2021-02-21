@@ -12515,7 +12515,8 @@ PrefabInstance:
       propertyPath: m_SelectedEditorRenderState
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7068143103092054310, guid: 50509463408f656409e460a03bc55bb7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 50509463408f656409e460a03bc55bb7, type: 3}
 --- !u!4 &7686979936532865488 stripped
 Transform:
@@ -14075,7 +14076,8 @@ PrefabInstance:
       propertyPath: m_SelectedEditorRenderState
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7068143103092054310, guid: 50509463408f656409e460a03bc55bb7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 50509463408f656409e460a03bc55bb7, type: 3}
 --- !u!4 &1644425894442081035 stripped
 Transform:
